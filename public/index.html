@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopEasy - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">ShopEasy</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="cart.html" class="cart-btn">
+        Cart (<span id="cart-count">0</span>)
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Welcome to ShopEasy</h1>
+    <p>Find amazing products at great prices</p>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="products-section">
+    <h2>Our Products</h2>
+    <div class="products-grid" id="products-grid">
+      <!-- Products are loaded here by JavaScript -->
+    </div>
+  </section>
+
+  <script src="cart.js"></script>
+  <script>
+    // Sample products data
+    const products = [
+      { id: 1, name: "Wireless Headphones", price: 2499, image: "https://via.placeholder.com/250x200?text=Headphones", description: "High quality sound with noise cancellation" },
+      { id: 2, name: "Smart Watch",         price: 4999, image: "https://via.placeholder.com/250x200?text=Smart+Watch", description: "Track your fitness and notifications" },
+      { id: 3, name: "Laptop Backpack",     price: 1299, image: "https://via.placeholder.com/250x200?text=Backpack", description: "Durable backpack with USB charging port" },
+      { id: 4, name: "Bluetooth Speaker",   price: 1799, image: "https://via.placeholder.com/250x200?text=Speaker", description: "Portable speaker with 12hr battery life" },
+      { id: 5, name: "Running Shoes",       price: 3499, image: "https://via.placeholder.com/250x200?text=Shoes", description: "Lightweight and comfortable for daily runs" },
+      { id: 6, name: "Sunglasses",          price: 899,  image: "https://via.placeholder.com/250x200?text=Sunglasses", description: "UV400 protection polarized lenses" },
+      { id: 7, name: "Fitness Tracker",     price: 1999, image: "https://via.placeholder.com/250x200?text=Fitness+Tracker", description: "Monitor your health and activity levels" },
+      { id: 8, name: "Gaming Mouse",        price: 1499, image: "https://via.placeholder.com/250x200?text=Gaming+Mouse", description: "Ergonomic design with customizable buttons" },
+      { id: 9, name: "Coffee Maker",        price: 2999, image: "https://via.placeholder.com/250x200?text=Coffee+Maker", description: "Brew the perfect cup every time" },
+      { id: 10, name: "Electric Kettle",    price: 999,  image: "https://via.placeholder.com/250x200?text=Kettle", description: "Boil water quickly with auto shut-off" },
+      { id: 11, name: "Yoga Mat",           price: 799,  image: "https://via.placeholder.com/250x200?text=Yoga+Mat", description: "Non-slip surface for all your yoga needs" },
+      { id: 12, name: "Portable Charger",    price: 1299, image: "https://via.placeholder.com/250x200?text=Charger", description: "Charge your devices on the go with fast charging" },
+      { id: 13, name: "Water Bottle",        price: 499,  image: "https://via.placeholder.com/250x200?text=Water+Bottle", description: "Keep your drinks cold for hours" },
+      { id: 14, name: "Wireless Earbuds",    price: 1999, image: "https://via.placeholder.com/250x200?text=Earbuds", description: "True wireless with great sound quality" },
+      { id: 15, name: "Smartphone Stand",    price: 299,  image: "https://via.placeholder.com/250x200?text=Phone+Stand", description: "Adjustable stand for hands-free viewing" },
+      { id: 16, name: "LED Desk Lamp",       price: 899,  image: "https://via.placeholder.com/250x200?text=Desk+Lamp", description: "Brighten your workspace with adjustable lighting" },
+      { id: 17, name: "Back Massager",       price: 2499, image: "https://via.placeholder.com/250x200?text=Massager", description: "Relax your muscles with deep tissue massage" },
+      { id: 18, name: "Noise Cancelling Headphones", price: 3499, image: "https://via.placeholder.com/250x200?text=Noise+Cancelling+Headphones", description: "Experience immersive sound without distractions" },
+      { id: 19, name: "Smart Home Hub",     price: 3999, image: "https://via.placeholder.com/250x200?text=Smart+Home+Hub", description: "Control all your smart devices from one place" },
+      { id: 20, name: "Electric Scooter",    price: 14999, image: "https://via.placeholder.com/250x200?text=Electric+Scooter", description: "Eco-friendly transportation for short commutes" },
+      { id: 21, name: "Action Camera",       price: 2999, image: "https://via.placeholder.com/250x200?text=Action+Camera", description: "Capture your adventures in stunning 4K" },
+      { id: 22, name: "Wireless Charger",    price: 999,  image: "https://via.placeholder.com/250x200?text=Wireless+Charger", description: "Conveniently charge your devices without cables" },
+      { id: 23, name: "Smart Thermostat",    price: 4999, image: "https://via.placeholder.com/250x200?text=Smart+Thermostat", description: "Save energy and stay comfortable with smart temperature control" },
+      { id: 24, name: "Portable Bluetooth Speaker", price: 1799, image: "https://via.placeholder.com/250x200?text=Portable+Speaker", description: "Take your music anywhere with this compact speaker" },
+      { id: 25, name: "Fitness Smartwatch",   price: 3999, image: "https://via.placeholder.com/250x200?text=Fitness+Smartwatch", description: "Track your workouts and health metrics in style" },
+      { id: 26, name: "Wireless Gaming Headset", price: 2499, image: "https://via.placeholder.com/250x200?text=Gaming+Headset", description: "Experience immersive gaming audio with this wireless headset" },
+      { id: 27, name: "Smart Light Bulb",    price: 499,  image: "https://via.placeholder.com/250x200?text=Smart+Light+Bulb", description: "Control your lighting with your smartphone or voice assistant" },
+      { id: 28, name: "Electric Toothbrush", price: 1999, image: "https://via.placeholder.com/250x200?text=Toothbrush", description: "Achieve a superior clean with this electric toothbrush" },
+      { id: 29, name: "Portable Air Purifier", price: 2999, image: "https://via.placeholder.com/250x200?text=Air+Purifier", description: "Breathe cleaner air wherever you go with this portable purifier" },
+      { id: 30, name: "Smart Doorbell",      price: 3999, image: "https://via.placeholder.com/250x200?text=Doorbell", description: "See and speak to visitors at your door from your smartphone" }
+    ];
+
+    // Display products on the page
+    const grid = document.getElementById("products-grid");
+    products.forEach(product => {
+      grid.innerHTML += `
+        <div class="product-card">
+          <img src="${product.image}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <div class="price">₹${product.price}</div>
+          <div class="card-buttons">
+            <a href="product.html?id=${product.id}" class="btn-details">View Details</a>
+            <button class="btn-add" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
+          </div>
+        </div>
+      `;
+    });
+
+    updateCartCount();
+  </script>
+</body>
+</html>

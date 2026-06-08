@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details - ShopEasy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">ShopEasy</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="cart.html" class="cart-btn">Cart (<span id="cart-count">0</span>)</a>
+    </div>
+  </nav>
+
+  <a href="index.html" class="back-link">← Back to Products</a>
+
+  <div class="detail-container" id="product-detail">
+    <!-- Product loaded by JS -->
+  </div>
+
+  <script src="cart.js"></script>
+  <script>
+    const products = [
+      { id: 1, name: "Wireless Headphones", price: 2499, image: "https://via.placeholder.com/400x300?text=Headphones", description: "Premium quality wireless headphones with active noise cancellation. Enjoy up to 30 hours of battery life and crystal-clear audio. Compatible with all Bluetooth devices." },
+      { id: 2, name: "Smart Watch",         price: 4999, image: "https://via.placeholder.com/400x300?text=Smart+Watch", description: "Track steps, heart rate, sleep, and notifications right on your wrist. Water resistant up to 50m with a 7-day battery life." },
+      { id: 3, name: "Laptop Backpack",     price: 1299, image: "https://via.placeholder.com/400x300?text=Backpack", description: "Fits laptops up to 15.6 inches. Multiple compartments, padded straps, and a built-in USB charging port on the side." },
+      { id: 4, name: "Bluetooth Speaker",   price: 1799, image: "https://via.placeholder.com/400x300?text=Speaker", description: "360-degree sound with deep bass. Waterproof, dustproof, and drop-resistant. Works up to 10 meters range." },
+      { id: 5, name: "Running Shoes",       price: 3499, image: "https://via.placeholder.com/400x300?text=Shoes", description: "Engineered mesh upper for breathability. Responsive foam cushioning perfect for daily training and long runs." },
+      { id: 6, name: "Sunglasses",          price: 899,  image: "https://via.placeholder.com/400x300?text=Sunglasses", description: "Polarized UV400 protection lenses. Lightweight frame that's perfect for outdoor activities and daily wear." }
+    ];
+
+    // Get product id from URL: ?id=1
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get("id"));
+    const product = products.find(p => p.id === id);
+
+    const container = document.getElementById("product-detail");
+    if (product) {
+      container.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <div class="detail-info">
+          <h1>${product.name}</h1>
+          <p>${product.description}</p>
+          <div class="detail-price">₹${product.price}</div>
+          <button class="btn-primary" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
+            Add to Cart
+          </button>
+        </div>
+      `;
+    } else {
+      container.innerHTML = "<p style='padding:40px'>Product not found.</p>";
+    }
+
+    updateCartCount();
+  </script>
+</body>
+</html>

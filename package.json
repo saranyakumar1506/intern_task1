@@ -1,0 +1,12 @@
+{
+  "name": "ecommerce-store",
+  "version": "1.0.0",
+  "description": "A simple e-commerce store built with HTML, CSS, JS and Express.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
